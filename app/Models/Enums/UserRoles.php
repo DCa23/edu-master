@@ -2,7 +2,7 @@
 
 namespace App\Models\Enums;
 
-enum UserRoles: string 
+enum UserRoles: string
 {
     case TEACHER = 'teacher';
     case STUDENT = 'student';

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             ->create([
                 'name' => 'Test User',
                 'email' => 'test@example.com',
-                'role' => UserRoles::TEACHER,
+                'role' => UserRoles::TEACHER->value,
             ]);
     }
 }
