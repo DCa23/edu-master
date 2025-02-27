@@ -1,7 +1,7 @@
 <template>
     <div class="text-center">
         <div class="text-6xl">{{ title }}</div>
-        <div class="text-8xl">{{ counter }}</div>
+        <div class="mt-6 text-6xl">{{ counter }}</div>
     </div>
 </template>
 

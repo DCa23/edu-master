@@ -14,12 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()
+        $student = User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'student@example.com',
+            'role' => UserRoles::STUDENT->value,
+        ]);
+
+        $teacher = User::factory()
             ->has(User::factory(20), 'students')
             ->create([
                 'name' => 'Test User',
                 'email' => 'test@example.com',
                 'role' => UserRoles::TEACHER->value,
             ]);
+
+        $teacher->students()->attach($student);
     }
 }

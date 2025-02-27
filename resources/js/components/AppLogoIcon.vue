@@ -13,12 +13,57 @@ defineProps<Props>();
 </script>
 
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 42" :class="className" v-bind="$attrs">
-        <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M17.2 5.633 8.6.855 0 5.633v26.51l16.2 9 16.2-9v-8.442l7.6-4.223V9.856l-8.6-4.777-8.6 4.777V18.3l-5.6 3.111V5.633ZM38 18.301l-5.6 3.11v-6.157l5.6-3.11V18.3Zm-1.06-7.856-5.54 3.078-5.54-3.079 5.54-3.078 5.54 3.079ZM24.8 18.3v-6.157l5.6 3.111v6.158L24.8 18.3Zm-1 1.732 5.54 3.078-13.14 7.302-5.54-3.078 13.14-7.3v-.002Zm-16.2 7.89 7.6 4.222V38.3L2 30.966V7.92l5.6 3.111v16.892ZM8.6 9.3 3.06 6.222 8.6 3.143l5.54 3.08L8.6 9.3Zm21.8 15.51-13.2 7.334V38.3l13.2-7.334v-6.156ZM9.6 11.034l5.6-3.11v14.6l-5.6 3.11v-14.6Z"
-        />
-    </svg>
+    <svg
+    width="100"
+    height="100"
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- Libro abierto -->
+    <path
+        d="M20 80V20C20 18 22 15 25 15H45C48 15 50 18 50 20V80"
+        stroke="#1E3A8A"
+        stroke-width="5"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+    <path
+        d="M50 80V20C50 18 52 15 55 15H75C78 15 80 18 80 20V80"
+        stroke="#1E3A8A"
+        stroke-width="5"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+    
+    <!-- Páginas abiertas -->
+    <path
+        d="M50 80C50 70 40 65 30 65C20 65 20 70 20 80"
+        stroke="#1E3A8A"
+        stroke-width="4"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+    <path
+        d="M50 80C50 70 60 65 70 65C80 65 80 70 80 80"
+        stroke="#1E3A8A"
+        stroke-width="4"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <!-- Birrete -->
+    <polygon
+        points="50,10 80,25 50,40 20,25"
+        fill="#1E3A8A"
+        stroke="#1E3A8A"
+        stroke-width="2"
+        stroke-linejoin="round"
+    />
+    <line x1="80" y1="25" x2="80" y2="35" stroke="#1E3A8A" stroke-width="3" stroke-linecap="round" />
+</svg>
 </template>
