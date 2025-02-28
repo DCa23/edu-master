@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\TeacherResource;
+use App\Http\Resources\UserResource;
 use App\Models\Enums\UserRoles;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,12 +22,12 @@ class DashboardController extends Controller
     {
         if ($request->user()->role == UserRoles::TEACHER->value) {
             return Inertia::render('Dashboards/Teacher', [
-                'teacher' => TeacherResource::make($request->user()->load('students')),
+                'teacher' => UserResource::make($request->user()->load(['students', 'tasks'])),
             ]);
         }
 
         return Inertia::render('Dashboards/Student', [
-            'student' => StudentResource::make($request->user()->load('students')),
+            'student' => UserResource::make($request->user()->load('tasks')),
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('testing', function (Request $request) {
-    dd($request->user()->students[0]->teachers, $request->user()->teachers);
+    $tasks = Task::all();
+
+    dd($tasks[0]->users, $tasks[0]->teachers, $tasks[0]->students);    // dd($request->user()->students[1]->tasks);
+    // dd($request->user()->tasks);
 });
 
 require __DIR__.'/settings.php';

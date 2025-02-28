@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\TeacherResource;
+use App\Http\Resources\UserResource;
 use App\Models\Enums\UserRoles;
 use App\Models\User;
 
@@ -23,7 +22,7 @@ it('Renders passes the student resource to the component when role is student an
     $user = User::factory()->create();
     actingAs($user)
         ->get(route('dashboard'))
-        ->assertHasResource('student', StudentResource::make($user));
+        ->assertHasResource('student', UserResource::make($user));
 });
 
 it('Renders the student dashboard component when role is non established', function () {
@@ -46,5 +45,5 @@ it('Renders passes the teacher resource to the component when role is teacher an
 
     actingAs($user)
         ->get(route('dashboard'))
-        ->assertHasResource('teacher', TeacherResource::make($user));
+        ->assertHasResource('teacher', UserResource::make($user));
 });

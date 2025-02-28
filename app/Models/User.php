@@ -49,11 +49,16 @@ class User extends Authenticatable
 
     public function students(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'student_teacher', 'teacher_id', 'student_id');
+        return $this->belongsToMany(User::class, 'student_teacher', 'student_id', 'teacher_id');
     }
 
     public function teachers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'student_teacher', 'student_id', 'teacher_id');
+        return $this->belongsToMany(User::class, 'student_teacher', 'teacher_id', 'student_id');
+    }
+
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'task_user', 'user_id', 'task_id');
     }
 }
