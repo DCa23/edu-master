@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Enums\UserRoles;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,6 +22,11 @@ class UserResource extends JsonResource
             'teachers' => $this->whenLoaded('teachers', fn () => $this->teachers),
             'students' => $this->whenLoaded('students', fn () => $this->students),
             'tasks' => $this->whenLoaded('tasks', fn () => TaskResource::collection($this->tasks)),
+            'can' => [
+                'add_tasks' => UserRoles::TEACHER->value === $this->role,
+                'edit_tasks' => UserRoles::TEACHER->value === $this->role,
+                'answer_tasks' => UserRoles::STUDENT->value === $this->role,
+            ],
         ];
     }
 }

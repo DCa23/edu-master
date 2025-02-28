@@ -6,10 +6,15 @@ use App\Models\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Task extends Model
 {
     protected $with = ['teachers'];
+
+    protected $fillable = [
+        'title',
+    ];
 
     /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory;
@@ -27,5 +32,10 @@ class Task extends Model
     public function students(): BelongsToMany
     {
         return $this->users()->where('role', '=', UserRoles::STUDENT->value);
+    }
+
+    public function task_questions(): HasMany
+    {
+        return $this->hasMany(TaskQuestion::class);
     }
 }

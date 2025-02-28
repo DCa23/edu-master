@@ -1,7 +1,15 @@
 <template>
     <AppLayout>
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <h1>test</h1>
+            <div>
+                <a 
+                    v-if="props.user.data.can.add_tasks"
+                    :href="route('tasks.create')"
+                    type="button" 
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        + Create Task
+                </a>
+            </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -26,8 +34,8 @@
                                 {{task.teachers[0]?.name }}
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <a v-if="props.user?.data.role == 'teacher'" href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a v-else href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Answer</a>
+                                <a v-if="props.user.data.can.edit_tasks" href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a v-if="props.user.data.can.answer_tasks" href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Answer</a>
                             </td>
                         </tr>
                     </tbody>

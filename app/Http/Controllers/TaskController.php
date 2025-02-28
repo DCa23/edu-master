@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
 use App\Models\Task;
+use App\Models\TaskQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -13,6 +15,8 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Task::class);
+
         return Inertia('Tasks/List', [
             'user' => UserResource::make($request->user()->load('tasks')),
         ]);
@@ -21,9 +25,13 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        Gate::authorize('create', Task::class);
+
+        return Inertia('Tasks/Form', [
+            'user' => UserResource::make($request->user()->load('tasks')),
+        ]);
     }
 
     /**
@@ -31,7 +39,28 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('create', Task::class);
+
+        $data = $request->validate([
+            'title' => ['required', 'string'],
+            'questions' => ['required', 'array'],
+            'questions.*.question' => ['required', 'string'],
+            'questions.*.answer' => ['required', 'string'],
+        ]);
+
+        $task = $request->user()->tasks()->create([
+            'title' => $data['title'],
+        ]);
+
+        foreach ($data['questions'] as $question) {
+            TaskQuestion::create([
+                'question' => $question['question'],
+                'answer' => $question['answer'],
+                'task_id' => $task->id,
+            ]);
+        }
+
+        return to_route('tasks.index');
     }
 
     /**
