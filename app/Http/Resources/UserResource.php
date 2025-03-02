@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'can' => [
                 'add_tasks' => UserRoles::TEACHER->value === $this->role,
                 'edit_tasks' => UserRoles::TEACHER->value === $this->role,
+                'delete_tasks' => UserRoles::TEACHER->value === $this->role,
                 'answer_tasks' => UserRoles::STUDENT->value === $this->role,
             ],
         ];

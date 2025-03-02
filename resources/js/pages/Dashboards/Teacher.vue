@@ -11,7 +11,7 @@
                     <DashboardCounter title="Total Tasks" :counter="props.teacher.data.tasks?.length" />
                 </div>
                 <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <DashboardCounter title="Tasks completed" :counter="3" />
+                    <DashboardCounter title="Tasks completed" :counter="0" />
                 </div>
             </div>
             <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">

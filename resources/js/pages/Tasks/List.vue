@@ -46,6 +46,14 @@
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         Answer
                                 </a>
+                                <button 
+                                    v-if="props.user.data.can.delete_tasks" 
+                                    type="button"
+                                    :href="route('tasks.show', {task: task.id})" 
+                                    @click="deleteTask(task.id)"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                        Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -71,10 +79,15 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { ref } from 'vue';
+import { router } from '@inertiajs/vue3';
 const props = defineProps(['user','score']);
 const userClosedModal = ref(false);
 
 const closeModal = () => {
     userClosedModal.value = true;
 };
+
+const deleteTask = (task_id) => {
+    router.delete(route('tasks.destroy', {task: task_id}));
+}
 </script>
