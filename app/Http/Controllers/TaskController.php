@@ -16,9 +16,14 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('viewAny', Task::class);
+        // TO-DO load all tasks "manually" instead of throught the relationship in order to display the notes
+        // $tasks = Task::with(['taskSubmissions' => function ($query) use ($user) {
+        //     $query->where('user_id', $user->id);
+        // }])->get();
 
         return Inertia('Tasks/List', [
             'user' => UserResource::make($request->user()->load('tasks')),
+            'score' => session()->get('score'),
         ]);
     }
 
@@ -68,7 +73,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        $task->load('task_questions');
+
+        return Inertia('Tasks/Show', [
+            'task' => $task,
+        ]);
     }
 
     /**

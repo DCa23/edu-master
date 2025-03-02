@@ -15,8 +15,10 @@ class TaskResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'title' => $this->title,
             'teachers' => $this->whenLoaded('teachers', fn () => UserResource::collection($this->teachers)),
+            'task_questions' => $this->whenLoaded('task_questions', fn () => $this->task_questions),
         ];
     }
 }

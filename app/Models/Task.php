@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Models\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Task extends Model
 {
-    protected $with = ['teachers'];
+    protected $with = ['teachers', 'task_submission'];
 
     protected $fillable = [
         'title',
@@ -37,5 +38,10 @@ class Task extends Model
     public function task_questions(): HasMany
     {
         return $this->hasMany(TaskQuestion::class);
+    }
+
+    public function task_submission(): BelongsTo
+    {
+        return $this->belongsTo(TaskSubmission::class);
     }
 }
