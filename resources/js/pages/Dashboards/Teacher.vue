@@ -28,7 +28,5 @@ import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import DashboardCounter from '@/components/DashboardCounter.vue';
 
-
 const props = defineProps(['teacher']);
-console.log(props.teacher);
 </script>
